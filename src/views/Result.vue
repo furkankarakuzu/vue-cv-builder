@@ -1,10 +1,26 @@
 <script>
 import html2canvas from "html2canvas";
+import html2pdf from "html2pdf.js";
 export default {
   methods: {
     saveResume(type) {
       if (type == "pdf") {
-        console.log(type);
+        const el = document.getElementById("resume");
+        let opt = {
+          margin: 0,
+          filename: "resume.pdf",
+          image: { type: "jpeg", quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: {
+            unit: "mm",
+            format: [280, 350],
+            orientation: "portrait",
+          },
+        };
+        html2pdf()
+          .set(opt)
+          .from(el)
+          .save();
       } else {
         html2canvas(this.$refs.resume, {}).then((canvas) => {
           const img = canvas.toDataURL("image/jpeg");
