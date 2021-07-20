@@ -1,13 +1,25 @@
 <script>
+import html2canvas from "html2canvas";
 export default {
   methods: {
     saveResume(type) {
-      const element = document.getElementById("resume");
       if (type == "pdf") {
-        console.log(element);
+        console.log(type);
       } else {
-        console.log(element);
+        html2canvas(this.$refs.resume, {}).then((canvas) => {
+          const img = canvas.toDataURL("image/jpeg");
+          this.download(img);
+        });
       }
+    },
+    download(url) {
+      let link = document.createElement("a");
+      link.style.display = "none";
+      link.href = url;
+      link.download = "resume.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     },
   },
 };
@@ -39,7 +51,7 @@ export default {
         </li>
       </ul>
     </div>
-    <main class="resumeCanvas" id="resume">
+    <main class="resumeCanvas" id="resume" ref="resume">
       <div class="row justify-content-between">
         <div
           class="col-6 text-center"
@@ -155,9 +167,7 @@ export default {
   padding: 0.3in;
   width: 8.5in;
   height: 12in;
-  background-color: #faffff;
-  -webkit-box-shadow: 0 3px 8px -3px rgba(0, 0, 0, 0.7);
-  box-shadow: 0 3px 8px -3px rgba(0, 0, 0, 0.7);
+  background-color: #ffff;
 }
 
 .title {
