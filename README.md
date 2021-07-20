@@ -1,4 +1,10 @@
 # cv-creator
+# Nedir ?
+Daha önce tecrübe edinmediğim "bir eleman, sayfa veya component görüntüsünü PDF veya PNG olarak kaydetmeyi" tecrübe edinmek için cv builder senaryosu hazırladım. Geliştirirken bir eleman, sayfa veya component görüntüsünü PDF veya PNG olarak kaydetmeyi tecrübe edindim.
+
+## Demo
+
+[Live Demo](https://pedantic-shockley-441443.netlify.app)
 
 ## Project setup
 ```
